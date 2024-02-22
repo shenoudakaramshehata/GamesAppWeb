@@ -1,0 +1,146 @@
+﻿@page
+@model Gameapp.Areas.Admin.Pages.ChampionShipModel
+@{
+    ViewData["active"] = "active";
+}
+
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <h3 style="margin-top:9px; color:#4b49ac">  @sharedResource["ChampionShips"] </h3>
+        @sharedResource[""]
+    <a class="btn btn-info" style="background-color:#4b49ac !important; border:none" href="/Admin/AddChampionShip">@sharedResource["Add"]</a>
+    </div>
+    <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+
+
+        @(Html.DevExtreme().DataGrid<Gameapp.Models.Champion>()
+        .DataSource(ds => ds.Mvc()
+        .Controller("Champions")
+        .LoadAction("Get")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("ChampionId")
+        )
+        .RemoteOperations(true)
+        .Columns(columns => {
+
+        columns.Add().DataField("ChampionPic")
+        .Width(70)
+        .AllowFiltering(false)
+        .AllowSorting(false)
+        .CellTemplate(
+            @<text>
+                @(await Html.PartialAsync("_CellTemplate"))
+            </text>)
+        .EditCellTemplate(
+            @<text>
+                @(await Html.PartialAsync("_EditCellTemplate"))
+            </text>).Caption(sharedResource["Picture"]);
+
+
+        columns.AddFor(m => m.ChampionTlEn).Caption(sharedResource["TlEn"]);
+
+        columns.AddFor(m => m.ChampionTlAR).Caption(sharedResource["TlAr"]);
+
+        columns.AddFor(m => m.StartDate).Caption(sharedResource["StartDate"]);
+
+        columns.AddFor(m => m.EndDate).Caption(sharedResource["EndDate"]);
+
+        columns.AddFor(m => m.JoinStart).Caption(sharedResource["JoinStart"]);
+
+        columns.AddFor(m => m.JoinEnd).Caption(sharedResource["JoinEnd"]);
+
+        columns.AddFor(m => m.ChampionContent).Caption(sharedResource["Content"]);
+
+        columns.AddFor(m => m.GameModeId).Lookup(lookup => lookup
+    .DataSource(ds => ds.WebApi().Controller("Champions").LoadAction("GameModesLookup").Key("Value"))
+    .ValueExpr("Value")
+    .DisplayExpr("Text")
+    ).Caption(sharedResource["GameMode"]);
+
+        columns.AddFor(m => m.ChampTypeId).Lookup(lookup => lookup
+        .DataSource(ds => ds.WebApi().Controller("Champions").LoadAction("ChampionTypeLookup").Key("Value"))
+        .ValueExpr("Value")
+        .DisplayExpr("Text")
+        ).Caption(sharedResource["Type"]);
+
+
+        columns.Add().Caption(sharedResource["Actions"]).Alignment(HorizontalAlignment.Center).Width(300).CellTemplate(@<text>
+                <a href="/Admin/ParticipationList?id=<%- data.ChampionId %>"> @sharedResource["Participants"]  </a>
+               
+            <a href="/Admin/EditChampionShip?id=<%- data.ChampionId %>"> @sharedResource["Edit"] | </a>
+                <a href="/Admin/DeleteChampionShip?id=<%- data.ChampionId %>"> @sharedResource["Delete"]  </a>
+            </text>);
+
+
+        })
+        .Editing(e => e.Mode(GridEditMode.Popup)
+        .AllowUpdating(false)
+        .AllowAdding(false)
+        .AllowDeleting(false)
+        .Popup(p => p
+        .Title("Add Championship")
+        .ShowTitle(true)
+        .MaxWidth(750)
+        .Height(400)).Form(f => f.Items(items =>
+        {
+        items.AddGroup()
+        .ColCount(2)
+        .ColSpan(2)
+        .Items(groupItems =>
+        {
+        groupItems.AddSimple().DataField("ChampionTlAR");
+        groupItems.AddSimple().DataField("ChampionTlEn");
+        groupItems.AddSimple().DataField("StartDate");
+        groupItems.AddSimple().DataField("EndDate");
+        groupItems.AddSimple().DataField("JoinStart");
+        groupItems.AddSimple().DataField("JoinEnd");
+        groupItems.AddSimple().DataField("ChampionContent");
+        groupItems.AddSimple().DataField("GameModeId");
+        groupItems.AddSimple().DataField("ChampTypeId");
+
+
+
+        });
+        items.AddGroup()
+        .Caption("Champion Picture")
+        .ColCount(2)
+        .ColSpan(2)
+        .Items(groupItems =>
+        {
+        groupItems.AddSimple().DataField("ChampionPic").ColSpan(2);
+        });
+        }))
+        )
+        .Paging(paging => paging.PageSize(10))
+        .Pager(pager =>
+        {
+        pager.Visible(true);
+        pager.DisplayMode(GridPagerDisplayMode.Full);
+        pager.ShowPageSizeSelector(true);
+        pager.AllowedPageSizes(new JS("[5, 10, 'all']"));
+        pager.ShowInfo(true);
+        pager.ShowNavigationButtons(true);
+        })
+        .ShowBorders(true)
+        .FilterRow(filterRow => filterRow
+        .Visible(true)
+        .ApplyFilter(GridApplyFilterMode.Auto)
+        )
+        .SearchPanel(searchPanel => searchPanel
+        .Visible(true)
+        
+        .Width(200)
+        .Placeholder(sharedResource["SearchTxt"]))
+        .HeaderFilter(headerFilter => headerFilter.Visible(true)).ShowColumnLines(false)
+        .ShowRowLines(true)
+        .RowAlternationEnabled(true)
+     .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+        )
+    </div>
+</div>
+
+
+

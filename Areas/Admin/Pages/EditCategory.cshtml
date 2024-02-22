@@ -1,0 +1,128 @@
+﻿@page
+@model Gameapp.Areas.Admin.Pages.EditCategoryModel
+@{
+}
+
+
+<div class="card">
+
+    <div class="card-header">
+        <h3 style="margin-top:9px; color:#4b49ac">@sharedResource["Edit"]  @sharedResource["Category"] </h3>
+</div>
+
+    <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+        <form id="form" method="post" enctype="multipart/form-data">
+            <div class="text-danger" asp-validation-summary="All"></div>
+
+            <div class="row">
+                <div class="col-sm-12 col-lg-6" style="margin-top: 3px;">
+
+                    
+                    <div class="dx-field d-none">
+
+                        <div class="dx-field-label"></div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().TextBoxFor(s => s.Category.CategoryId)
+
+                            )
+                        </div>
+                    </div>
+
+
+                    <div class="dx-field">
+
+                        <div class="dx-field-label">@sharedResource["TlAr"]:</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().TextBoxFor(s => s.Category.CategoryTlar)
+                           
+
+                            )
+                        </div>
+                    </div>
+
+                    <div class="dx-field">
+
+                        <div class="dx-field-label">@sharedResource["TlEn"]:</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().TextBoxFor(s => s.Category.CategoryTlen)
+
+                            )
+                        </div>
+                    </div>
+
+                    <div class="dx-field">
+
+                        <div class="dx-field-label">@sharedResource["Sort"]:</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().NumberBoxFor(s => s.Category.OrderIndex)
+                            .Placeholder("Enter The Category OrderIndex  ...")
+                            )
+                        </div>
+                    </div>
+
+                    <div class="dx-field">
+
+                        <div class="dx-field-label">@sharedResource["IsActive"]:</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().CheckBoxFor(s => s.Category.IsActive)
+                            )
+                        </div>
+                    </div>
+                </div>
+
+
+                         <div class="col-sm-12 col-lg-6" style="margin-top: 3px;">
+
+            
+                             
+
+                    <div class="dx-field">
+                        <div class="dx-field-label">@sharedResource["Picture"] :</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().FileUploader()
+                            .Name("Category.CategoryPic")
+                            .SelectButtonText(sharedResource["Select_photo"])
+                            .LabelText("")
+                            .Accept("image/*")
+                            .Multiple(false)
+                            .UploadMode(FileUploadMode.UseForm)
+
+                            )
+
+                        </div>
+                    </div>
+
+
+                    
+
+                    <div class="dx-field">
+                        <div class="dx-field-label">@sharedResource["Icon"] :</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().FileUploader()
+                            .Name("Category.CategoryIcon")
+                            .SelectButtonText(sharedResource["Icon"])
+                            .LabelText("")
+                            .Accept("image/*")
+                            .Multiple(false)
+                            .UploadMode(FileUploadMode.UseForm)
+
+                            )
+
+                        </div>
+                    </div>
+
+              
+                </div>
+
+
+
+            </div>
+            @(Html.DevExtreme().Button()
+            .ID("button")
+            .Text(sharedResource["Save"])
+            .Type(ButtonType.Success)
+            .UseSubmitBehavior(true)
+            )
+        </form>
+    </div>
+</div>

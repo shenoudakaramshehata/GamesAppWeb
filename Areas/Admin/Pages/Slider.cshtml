@@ -1,0 +1,100 @@
+﻿@page
+@model Gameapp.Areas.Admin.Pages.SliderModel
+@{
+    ViewData["active"] = "active";
+
+}
+
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h3 style="margin-top:9px; color:#4b49ac"> Sliders List </h3>
+    </div>
+    <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+        <div id="data-grid-demo">
+            @(Html.DevExtreme().DataGrid<Gameapp.Models.Slider>()
+            .ID("gridContainer")
+            .ShowBorders(true)
+            .Editing(editing => {
+            editing.Mode(GridEditMode.Row);
+            editing.AllowUpdating(true);
+            editing.AllowAdding(true);
+            })
+            .OnEditorPreparing("onEditorPreparing")
+            .Columns(columns => {
+
+             columns.Add().DataField("Pic")
+                .Width(120)
+                .AllowFiltering(false)
+                .AllowSorting(false)
+                .CellTemplate(
+                    @<text>
+                        @(await Html.PartialAsync("_CellTemplate"))
+                    </text>)
+                .EditCellTemplate(
+                    @<text>
+                        @(await Html.PartialAsync("_EditCellTemplate"))
+                    </text>);
+
+
+            columns.AddFor(m => m.IsActive);
+
+            columns.AddFor(m => m.OrderIndex);
+
+            columns.AddFor(m => m.SliderTypeId)
+            .SetCellValue("setStateValue")
+            .Lookup(lookup => lookup
+            .DataSource(d => d.Mvc().Controller("Sliders").LoadAction("SliderTypeLookup").Key("ID"))
+            .DisplayExpr("Name")
+            .ValueExpr("ID")
+            ).Caption("Slider Type");;
+
+            columns.AddFor(m => m.EntityId)
+            .Lookup(lookup => lookup
+            .DataSource("getCities")
+            .DisplayExpr("Name")
+            .ValueExpr("ID")
+            ).Caption("Entity Name");;
+
+            })
+            .DataSource(d => d.Mvc()
+            .Controller("Sliders")
+            .LoadAction("Get")
+            .InsertAction("Post")
+            .UpdateAction("Put")
+            .Key("SliderId")
+            )
+            )
+        </div>
+    </div>
+</div>
+
+<script>
+    function onEditorPreparing(e) {
+        if((e.parentType === "dataRow" && e.dataField === "EntityId")) {
+            e.editorOptions.disabled = (typeof e.row.data.SliderTypeId !== "number");
+        }
+
+               if((e.parentType === "dataRow" && e.dataField === "EntityId") && (e.row.data.SliderTypeId == 4 || e.row.data.SliderTypeId == 5)) {
+            e.editorOptions.disabled = true;
+            console.log("hh", e.editorOptions)
+        }
+    }
+    function getCities(options) {
+        return {
+            store: DevExpress.data.AspNet.createStore({
+                key: "ID",
+                loadUrl: '@Url.Action("EntityIdLookup", "Sliders", new { httproute = true })'
+            }),
+            filter: options.data ? ["SliderTypeId", "=", options.data.SliderTypeId] : null
+        };
+    }
+    function setStateValue(rowData, value) {
+        console.log("this row data", rowData);
+        console.log(value);
+        rowData.SliderTypeId = value;
+        rowData.EntityId = null;
+    }
+</script>

@@ -1,0 +1,50 @@
+﻿@page
+@model Gameapp.Areas.Admin.Pages.ChampionsTypes.AddModel
+@{
+    Layout= "_Layout";
+}
+
+
+
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Add"]  @sharedResource["Champion Type"]
+                            <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+
+                        <br />
+                        <form id="form" method="post" enctype="multipart/form-data">
+                            @(Html.DevExtreme().Form<Gameapp.Models.ChampionType>()
+
+            .Items(items => {
+
+                items.AddSimpleFor(m => m.NameAr).IsRequired(true).Label(k => k.Text(sharedResource["TlAr"]));
+            items.AddSimpleFor(m => m.NameEn).IsRequired(true).Label(k => k.Text(sharedResource["TlEn"]));
+          
+     
+                items.AddButton()
+        .ColSpan(3)
+        .HorizontalAlignment(HorizontalAlignment.Right)
+        .ButtonOptions(b => b.Text(sharedResource["Save"])
+        .Type(ButtonType.Success)
+        .UseSubmitBehavior(true)).CssClass("invers");
+
+
+
+            })
+            )
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

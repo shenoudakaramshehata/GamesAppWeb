@@ -1,0 +1,85 @@
+﻿@page
+@model Gameapp.Areas.Admin.Pages.SocialMediaLinksModel
+@{
+    ViewData["active"] = "active";
+
+}
+
+
+<div class="card">
+<div class="card-header">
+    <h3 style="margin-top:9px; color:#4b49ac"> @sharedResource["SocialMediaLinks"] </h3>
+</div>
+
+<div style="padding-top:20px;padding-left:20px;padding-right:20px">
+    @(Html.DevExtreme().DataGrid<Gameapp.Models.SoicialMidiaLink>()
+    .DataSource(ds => ds.Mvc()
+        .Controller("SoicialMidiaLinks")
+        .LoadAction("Get")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("id")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+
+
+        //columns.AddFor(m => m.facebooklink).Caption(sharedResource["Facebook"]);
+
+        columns.AddFor(m => m.WhatsApplink).Caption(sharedResource["WhatsApp"]);
+
+        //columns.AddFor(m => m.LinkedInlink).Caption(sharedResource["LinkedIn"]);
+
+        columns.AddFor(m => m.Instgramlink).Caption(sharedResource["Instgram"]);
+
+        columns.AddFor(m => m.TwitterLink).Caption(sharedResource["Twitter"]);
+    })
+   .Editing(e => e.Mode(GridEditMode.Popup)
+   .Texts(c => c.CancelRowChanges(sharedResource["Cancel"]).SaveRowChanges(sharedResource["Save"]).EditRow(sharedResource["Edit"]))
+    .AllowUpdating(true)
+    .AllowAdding(false)
+    .AllowDeleting(false)
+    .Popup(p => p
+    .Title(sharedResource["Edit"]+" "+sharedResource["SocialMediaLinks"])
+    .ShowTitle(true)
+    .MaxWidth(750)
+    .Height(250)).Form(f => f.Items(items =>
+    {
+        items.AddGroup()
+            .ColCount(2)
+            .ColSpan(2)
+            .Items(groupItems =>
+            {
+                //groupItems.AddSimple().DataField("facebooklink");
+                groupItems.AddSimple().DataField("WhatsApplink");
+                //groupItems.AddSimple().DataField("LinkedInlink");
+                groupItems.AddSimple().DataField("TwitterLink");
+                groupItems.AddSimple().DataField("Instgramlink");
+
+            });
+
+    }))
+    )
+
+    .ShowBorders(true)
+    .FilterRow(filterRow => filterRow
+    .Visible(true)
+    .ApplyFilter(GridApplyFilterMode.Auto)
+    )
+    .SearchPanel(searchPanel => searchPanel
+    .Visible(true)
+    .Width(240)
+         .Placeholder(sharedResource["SearchTxt"])
+
+    )
+    .HeaderFilter(headerFilter => headerFilter.Visible(true)).ShowColumnLines(false)
+    .ShowRowLines(true)
+    .RowAlternationEnabled(true)
+      .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+
+    )
+</div>
+
+</div>

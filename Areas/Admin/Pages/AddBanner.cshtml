@@ -1,0 +1,139 @@
+﻿@page
+@model Gameapp.Areas.Admin.Pages.AddBannerModel
+@{
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 style="margin-top:9px; color:#4b49ac"> Add Banner </h3>
+    </div>
+    <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+        <form id="form" method="post" enctype="multipart/form-data">
+            <div class="text-danger" asp-validation-summary="All"></div>
+            <div class="row">
+                <div class="col-sm-12 col-lg-6">
+
+                    <div class="dx-field">
+
+                        <div class="dx-field-label">Order Index:</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().TextBoxFor(s => s.Banner.OrderIndex)
+                            .Placeholder("Enter Banner Order Index  ...")
+
+                            )
+                        </div>
+                    </div>
+
+                    <div class="dx-field">
+
+                        <div class="dx-field-label">IsActive:</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().CheckBoxFor(s => s.Banner.IsActive)
+
+                            )
+                        </div>
+                    </div>
+
+
+                    <div class="dx-field">
+                        <div class="dx-field-label">Banner Picture :</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().FileUploader()
+                            .Name("Pic")
+                            .SelectButtonText("Select photo")
+                            .LabelText("")
+                            .Accept("image/*")
+                            .UploadMode(FileUploadMode.UseForm)
+
+                            )
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-12 col-lg-6">
+                    <div class="dx-fieldset">
+                        <div class="dx-fieldset-header">Slider Type</div>
+                        <div class="dx-field">
+                            @(Html.DevExtreme().Lookup()
+                            .DataSource(d => d.Mvc()
+                            .Controller("Sliders")
+                            .LoadAction("SliderTypeLookup")
+                            .Key("ID")
+
+                            ).DisplayExpr("Name")
+                            .ValueExpr("ID")
+                            .ID("slider_type")
+                            .DropDownOptions(p => p.ShowTitle(false))
+                            .OnValueChanged("sliderchange")
+                            )
+                        </div>
+                    </div>
+
+
+
+                    <div class="dx-fieldset" id="entity_type_container">
+                        <div class="dx-fieldset-header">Entity Name</div>
+                        <div class="dx-field">
+                            @(Html.DevExtreme().Lookup()
+                            .DataSource(new JS("getCities()"))
+                            .DisplayExpr("Name")
+                            .ValueExpr("ID")
+                            .ID("entity_type")
+
+                            .DropDownOptions(p => p.ShowTitle(false))
+                            )
+                        </div>
+                    </div>
+
+                </div>
+
+
+                @(Html.DevExtreme().Button()
+                .ID("button")
+                .Text("Create Banner")
+                .Type(ButtonType.Success)
+                .UseSubmitBehavior(true)
+                )
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function sliderchange(e) {
+        console.log(e);
+        console.log($("#entity_type"))
+        $("#entity_type").dxLookup({
+             store: DevExpress.data.AspNet.createStore({
+                    key: "ID",
+                    loadUrl: '@Url.Action("EntityIdLookup", "Sliders", new { httproute = true })'
+                }),
+                filter: ["SliderTypeId", "=", e.value]
+                })
+
+    }
+        window.onload = () => {
+
+    @*    document.getElementById("entity_type_container").classList.add("d-none");
+    *@    }
+
+         function getCities(options) {
+             console.log(options)
+            return {
+                store: DevExpress.data.AspNet.createStore({
+                    key: "ID",
+                    loadUrl: '@Url.Action("EntityIdLookup", "Sliders", new { httproute = true })'
+                }),
+                filter: ["SliderTypeId", "=", 3]
+            };
+        }
+
+</script>

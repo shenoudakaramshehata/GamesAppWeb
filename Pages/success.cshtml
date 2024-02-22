@@ -1,0 +1,202 @@
+﻿@page
+@model Gameapp.Pages.successModel
+@{
+    ViewData["Title"] = "Pay";
+    Layout = null;
+}
+<html >
+<head>
+    
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="~/opins/images/favicon/gameFav.png">
+    <style>
+        body {
+            text-align: center;
+            padding: 40px 0;
+            background: #EBF0F5;
+        }
+
+        h1 {
+            color: #88B04B;
+            font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+            font-weight: 900;
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #404F5E;
+            font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+            font-size: 20px;
+            margin: 0;
+        }
+
+        i {
+            color: #9ABC66;
+            font-size: 100px;
+            line-height: 200px;
+            margin-left: -15px;
+        }
+
+        .card {
+            background: white;
+            padding: 60px;
+            border-radius: 4px;
+            box-shadow: 0 2px 3px #C8D0D8;
+            display: inline-block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body >
+    <div class="card">
+        <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+            <i class="checkmark">✓</i>
+        </div>
+        <h1>@sharedResource["Success"]</h1>
+        <p>@sharedResource["We received your purchase request!"]</p>
+    </div>
+</body>
+</html>
+ @* @{
+               foreach (var item in @Model.invoiceVm.orderItemVms)
+                {
+                 <div class="esd-block-btn ">
+                    
+                    <div class="esd-save" title="Save as module">
+                <a><span class="es-icon-save"></span></a></div>
+                    
+                    <div class="esd-move ui-draggable-handle" title="Move">
+                        <a><span class="es-icon-move"></span></a>
+                    </div>
+                    <div class="esd-copy ui-draggable-handle" title="Copy">
+                        <a><span class="es-icon-copy"></span></a>
+                    </div>
+                    
+                    <div class="esd-delete" title="Delete">
+                        <a><span class="es-icon-delete"></span></a>
+                    </div>
+                </div><table cellpadding="0" cellspacing="0" width="100%"><tbody class="ui-droppable"><tr class="ui-draggable"><td align="center" class="esd-block-image  esd-hover esdev-disable-select esd-draggable esd-block" style="font-size: 0px;" esd-handler-name="imgBlockHandler"><div class="esd-block-btn esd-no-block-library">
+                   
+                    
+                    
+                    <div class="esd-move ui-draggable-handle" title="Move">
+                        <a><span class="es-icon-move"></span></a>
+                    </div>
+                    <div class="esd-copy ui-draggable-handle" title="Copy">
+                        <a><span class="es-icon-copy"></span></a>
+                    </div>
+                    
+                    <div class="esd-delete" title="Delete">
+                        <a><span class="es-icon-delete"></span></a>
+                    </div>
+                </div><a target="_blank" href="https://viewstripo.email"><img src="https://tlr.stripocdn.email/content/guids/CABINET_7a7b94e95c36edc56ed15c8d13d4a5d3/images/benjaminrascoewsegsdjltywunsplash.jpg" alt="" style="display: block;" width="170" class="adapt-img p_image"></a></td></tr></tbody></table></td></tr></tbody></table></td><td width="20"></td><td class="esdev-mso-td" valign="top"><table cellpadding="0" cellspacing="0" class="es-right" align="right"><tbody class="ui-droppable"><tr class="ui-draggable"><td width="370" align="left" class="esd-container-frame  esd-hover esdev-disable-select" esd-handler-name="containerHandler"> <div class="esd-structure-type"></div>
+            <div class="esd-block-btn">
+           
+                   
+                    
+            <div class="esd-save" title="Save as module">
+                <a><span class="es-icon-save"></span></a></div>
+                    
+                    <div class="esd-move ui-draggable-handle" title="Move">
+                        <a><span class="es-icon-move"></span></a>
+                    </div>
+                    <div class="esd-copy ui-draggable-handle" title="Copy">
+                        <a><span class="es-icon-copy"></span></a>
+                    </div>
+                    
+                    <div class="esd-delete" title="Delete">
+                        <a><span class="es-icon-delete"></span></a>
+                    </div>
+                </div><table cellpadding="0" cellspacing="0" width="100%"><tbody class="ui-droppable"><tr class="ui-draggable"><td align="left" class="esd-block-text es-m-txt-l  esd-hover esdev-disable-select esd-draggable esd-block" esd-handler-name="textElementHandler"><div class="esd-block-btn  esd-no-block-library">
+                   
+                    
+                    
+                    <div class="esd-move ui-draggable-handle" title="Move">
+                        <a><span class="es-icon-move"></span></a>
+                    </div>
+                    <div class="esd-copy ui-draggable-handle" title="Copy">
+                        <a><span class="es-icon-copy"></span></a>
+                    </div>
+                    
+                    <div class="esd-delete" title="Delete">
+                        <a><span class="es-icon-delete"></span></a>
+                    </div>
+                </div><h3 class="p_name">@item.ItemTitleEn</h3></td></tr><tr class="ui-draggable"><td align="left" class="esd-block-text es-m-txt-l es-p20t es-p10b es-m-p10t es-m-p0b  esd-hover esdev-disable-select esd-draggable esd-block" esd-handler-name="textElementHandler"><div class="esd-block-btn  esd-no-block-library">
+                   
+                    
+                    
+                    <div class="esd-move ui-draggable-handle" title="Move">
+                        <a><span class="es-icon-move"></span></a>
+                    </div>
+                    <div class="esd-copy ui-draggable-handle" title="Copy">
+                        <a><span class="es-icon-copy"></span></a>
+                    </div>
+                    
+                    <div class="esd-delete" title="Delete">
+                        <a><span class="es-icon-delete"></span></a>
+                    </div>
+                </div></td></tr><tr class="ui-draggable"><td align="left" class="esd-block-text es-m-txt-l es-p10t es-p10b es-m-p5t es-m-p5b  esd-hover esdev-disable-select esd-draggable esd-block" esd-handler-name="textElementHandler"><div class="esd-block-btn  esd-no-block-library">
+                   
+                    
+                    
+                    <div class="esd-move ui-draggable-handle" title="Move">
+                        <a><span class="es-icon-move"></span></a>
+                    </div>
+                    <div class="esd-copy ui-draggable-handle" title="Copy">
+                        <a><span class="es-icon-copy"></span></a>
+                    </div>
+                    
+                    <div class="esd-delete" title="Delete">
+                        <a><span class="es-icon-delete"></span></a>
+                    </div>
+                </div><p>QTY:&nbsp;@item.ItemQuantity</p></td></tr><tr class="ui-draggable"><td align="left" class="esd-block-text es-m-txt-l es-p10t es-m-p5t  esd-hover esdev-disable-select esd-draggable esd-block" esd-handler-name="textElementHandler"><div class="esd-block-btn esd-no-block-library">
+                   
+                    
+                    
+                    <div class="esd-move ui-draggable-handle" title="Move">
+                        <a><span class="es-icon-move"></span></a>
+                    </div>
+                    <div class="esd-copy ui-draggable-handle" title="Copy">
+                        <a><span class="es-icon-copy"></span></a>
+                    </div>
+                    
+                    <div class="esd-delete" title="Delete">
+                        <a><span class="es-icon-delete"></span></a>
+                    </div>
+                </div><p><strong class="p_price">PRICE: @item.Total</strong></p></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr class="ui-draggable"><td class="es-p20t es-p20r es-p20l esd-structure esdev-adapt-off  esd-hover esdev-disable-select" align="left" esd-dynamic-block="{&amp;quot;link&amp;quot;:{&amp;quot;blockMapping&amp;quot;:[{&amp;quot;selector&amp;quot;:&amp;quot;a&amp;quot;,&amp;quot;attribute&amp;quot;:&amp;quot;href&amp;quot;}]},&amp;quot;variables&amp;quot;:[{&amp;quot;variable&amp;quot;:&amp;quot;p_image&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;Image&amp;quot;,&amp;quot;blockMapping&amp;quot;:[{&amp;quot;selector&amp;quot;:&amp;quot;.p_image&amp;quot;,&amp;quot;attribute&amp;quot;:&amp;quot;src&amp;quot;}],&amp;quot;externalMapping&amp;quot;:{&amp;quot;pageSelector&amp;quot;:{&amp;quot;selector&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;modifier&amp;quot;:{&amp;quot;regexs&amp;quot;:[]}}},{&amp;quot;variable&amp;quot;:&amp;quot;p_name&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;Name&amp;quot;,&amp;quot;blockMapping&amp;quot;:[{&amp;quot;selector&amp;quot;:&amp;quot;.p_name&amp;quot;}],&amp;quot;externalMapping&amp;quot;:{&amp;quot;pageSelector&amp;quot;:{&amp;quot;selector&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;modifier&amp;quot;:{&amp;quot;regexs&amp;quot;:[]}}},{&amp;quot;variable&amp;quot;:&amp;quot;p_description&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;Description&amp;quot;,&amp;quot;blockMapping&amp;quot;:[{&amp;quot;selector&amp;quot;:&amp;quot;.p_description&amp;quot;}],&amp;quot;externalMapping&amp;quot;:{&amp;quot;pageSelector&amp;quot;:{&amp;quot;selector&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;modifier&amp;quot;:{&amp;quot;regexs&amp;quot;:[]}}},{&amp;quot;variable&amp;quot;:&amp;quot;p_price&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;Price&amp;quot;,&amp;quot;blockMapping&amp;quot;:[{&amp;quot;selector&amp;quot;:&amp;quot;.p_price&amp;quot;}],&amp;quot;externalMapping&amp;quot;:{&amp;quot;pageSelector&amp;quot;:{&amp;quot;selector&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;modifier&amp;quot;:{&amp;quot;regexs&amp;quot;:[]}}}]}" esd-handler-name="structureBlockHandler">
+            <div class="esd-structure-type">
+                    
+        
+            
+            <span class="es-icon-cog"></span> Smart-Structure
+        
+            </div><div class="esd-block-btn">
+                   
+                    
+            <div class="esd-save" title="Save as module">
+                <a><span class="es-icon-save"></span></a></div>
+                    
+                    <div class="esd-move ui-draggable-handle" title="Move">
+                        <a><span class="es-icon-move"></span></a>
+                    </div>
+                    <div class="esd-copy ui-draggable-handle" title="Copy">
+                        <a><span class="es-icon-copy"></span></a>
+                    </div>
+                    
+                    <div class="esd-delete" title="Delete">
+                        <a><span class="es-icon-delete"></span></a>
+                    </div>
+                </div><table width="560" cellpadding="0" cellspacing="0" class="esdev-mso-table"><tbody><tr><td class="esdev-mso-td" valign="top"><table cellpadding="0" cellspacing="0" class="es-left" align="left"><tbody class="ui-droppable"><tr class="ui-draggable"><td width="170" class="esd-container-frame  esd-hover esdev-disable-select" align="left" esd-handler-name="containerHandler">
+            <div class="esd-structure-type">
+                    
+        
+            Container
+        
+            </div>
+
+                                                                                                    
+                                                                            
+                }
+                }*@

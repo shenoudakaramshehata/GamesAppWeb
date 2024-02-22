@@ -1,0 +1,49 @@
+﻿@page
+@model Gameapp.Areas.Admin.DeleteCustomerMsgModel
+@{
+    ViewData["Title"] = sharedResource["clientsMessagesDetails"];
+    Layout = "~/Areas/Admin/Pages/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <h3 style="margin-top:9px; color:#4b49ac"> @sharedResource["Delete client Message"]  </h3>
+        <a class="btn btn-info" style="background-color:#4b49ac !important; border:none" href="/Admin/ContactUsMessages">@sharedResource["Back"]</a>
+    </div>
+    <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+
+
+        <div>
+            <h4>@sharedResource["clients Messages"]</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @sharedResource["Tele"]
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ContactUsMessages.Tele)
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["Email"]
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ContactUsMessages.Email)
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["Message"]
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ContactUsMessages.Msg)
+                </dd>
+            </dl>
+             <form method="post">
+                    <input type="hidden" asp-for="@Model.ContactUsMessages.Id" />
+                    <input type="submit" value="@sharedResource["Delete"]" class="btn btn-danger" /> 
+
+                </form>
+        </div>
+        
+       
+    </div>
+</div>

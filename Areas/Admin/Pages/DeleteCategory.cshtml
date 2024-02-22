@@ -1,0 +1,78 @@
+﻿@page
+@model Gameapp.Areas.Admin.Pages.DeleteCategoryModel
+
+@{
+    ViewData["Title"] = "DeleteCategory";
+    Layout = "~/Areas/Admin/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <h3 style="margin-top:9px; color:#4b49ac">@sharedResource["Delete"] @sharedResource["Category"] </h3>
+        <a class="btn btn-info" style="background-color:#4b49ac !important; border:none" href="/admin/Categories">@sharedResource["Back"]</a>
+    </div>
+    <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+
+      
+        <div>
+            <h4>@sharedResource["Category"]</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @sharedResource["TlAr"]
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Category.CategoryTlar)
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["TlEn"]
+
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Category.CategoryTlen)
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["Picture"]
+                </dt>
+                <dd class="col-sm-10">
+                    <img src="~/Images/@Model.Category.CategoryPic" style="width:20px; height:20px" />
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["Icon"]
+                </dt>
+                <dd class="col-sm-10">
+                    <img src="~/Images/@Model.Category.CategoryIcon" style="width:20px; height:20px" />
+
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["IsActive"]
+
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Category.IsActive)
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["Sort"]
+
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Category.OrderIndex)
+                </dd>
+            </dl>
+
+            @if (Model.Category.SubCategory.Count() <= 0 && Model.Category.Items.Count() <= 0)
+            {
+                <form method="post">
+                    <input type="hidden" asp-for="Category.CategoryId" />
+                    <input type="submit" value="@sharedResource["Delete"]" class="btn btn-danger" /> |
+
+                </form>
+            }
+            else
+            {
+                <div class="text-danger"> @sharedResource["CannotDeleted"]</div>
+
+            }
+        </div>
+    </div>
+</div>

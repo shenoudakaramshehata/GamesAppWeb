@@ -1,0 +1,92 @@
+﻿@page
+@model Gameapp.Areas.Admin.Pages.DeleteChampionShipModel
+
+@{
+    ViewData["Title"] = "DeleteChampionShip";
+    Layout = "~/Areas/Admin/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <h3 style="margin-top:9px; color:#4b49ac">  @sharedResource["Delete"] @sharedResource["Championship"] </h3>
+        <a class="btn btn-info" style="background-color:#4b49ac !important; border:none" href="/admin/ChampionShip"> @sharedResource["Back"] </a>
+    </div>
+    <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+
+       
+        <div>
+            <h4>@sharedResource["Championship"]</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @sharedResource["TlAr"]
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Champion.ChampionTlAR)
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["TlEn"]
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Champion.ChampionTlEn)
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["TlAr"]
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Champion.StartDate)
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["EndDate"]  
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Champion.EndDate)
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["JoinStart"]  
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Champion.JoinStart)
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["JoinEnd"] 
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Champion.JoinEnd)
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["Picture"] 
+                </dt>
+                <dd class="col-sm-10">
+                    <img src="~/images/@Html.DisplayFor(model => model.Champion.ChampionPic)" style="width:30px; height:30px" />
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["Content"]  
+
+                </dt>
+                <dd class="col-sm-10 border p-5 overflow-hidden">
+                    
+                    @Html.Raw(Model.Champion.ChampionContent)
+
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["GameMode"] 
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Champion.GameMode.GamemodeId)
+                </dd>
+                <dt class="col-sm-2">
+                    @sharedResource["Type"] 
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Champion.ChampionType.Id)
+                </dd>
+            </dl>
+
+            <form method="post">
+                <input type="hidden" asp-for="Champion.ChampionId" />
+                <input type="submit" value="@sharedResource["Delete"]" class="btn btn-danger" /> 
+                
+            </form>
+        </div>
+    </div>

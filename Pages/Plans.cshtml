@@ -1,0 +1,127 @@
+﻿@page
+@model Gameapp.Pages.PlansModel
+@{
+}
+
+
+<link rel="stylesheet" href="~/css/Plans.css" />
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+
+<section class="home_banner_area" style="margin-top:95px">
+    <div class="banner_inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="banner_content">
+                        <h2 style="margin-top:30px">
+                            Choose Your   <br>
+                            Plan <br>
+
+                        </h2>
+@*                        <p>
+                            Choose from the largest library of video games portal
+                        </p>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@if (Model.Plans.Count() <= 0)
+{
+    <section class="newsletter_area newsletter_area2" style="
+    margin: auto;
+    display: flex;
+    height: 300px;
+">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="newsletter_inner text-center">
+                        <h1>There Are No Plans </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+}
+else
+{
+
+    <div class="row justify-content-center" style="margin-top:50px; margin-bottom:50px; padding:10px">
+        @foreach (var item in Model.Plans)
+        {
+
+
+            <div style="width:250px !important">
+                <div class="pricing-table-3 basic" >
+                    <div class="pricing-table-header">
+                        <h4><strong>@item.EnglishTitle</strong></h4>
+                        <p> @item.NoOfItems Items</p>
+                    </div>
+                    <div class="price"><strong>22$</strong> /@item.Period MO</div>
+                    <div class="pricing-body">
+                        <ul class="pricing-table-ul">
+                            <li>
+                                @if (item.Reports)
+                                {
+                                    <i style="color:#4135a3" class="fas fa-check"></i>
+                                }
+                                else
+                                {
+                                    <i style="color:#4135a3" class="fas fa-times"></i>
+                                }
+                                Reports
+                            </li>
+                            <li>
+                                @if (item.Dashboard)
+                                {
+                                    <i style="color:#4135a3" class="fas fa-check"></i>
+                                }
+                                else
+                                {
+                                    <i style="color:#4135a3" class="fas fa-times"></i>
+                                }
+                                Dashboard
+                            </li>
+                            <li>
+                                @if (item.VipCollection)
+                                {
+                                    <i style="color:#4135a3" class="fas fa-check"></i>
+                                }
+                                else
+                                {
+                                    <i style="color:#4135a3" class="fas fa-times"></i>
+                                }
+                                 VipCollections
+                            </li>
+
+                            <li class="not-avail">
+                                @if (item.AdzBanners)
+                                {
+                                    <i style="color:#4135a3" class="fas fa-check"></i>
+                                }
+                                else
+                                {
+                                    <i style="color:#4135a3" class="fas fa-times"></i>
+                                }
+                                 Adz Banner
+                            </li>
+                        </ul><a href="/identity/account/register?id=@item.Id" class="view-more">SignUp</a>
+<a href="/identity/account/login?id=@item.Id" class="view-more" style="
+    background: none;
+    border: 1px solid;
+    color: #000;
+">SignIn</a>
+
+</div>
+                </div>
+            </div>
+
+
+        }
+    </div>
+}

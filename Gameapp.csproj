@@ -1,0 +1,109 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+	  <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+    <UserSecretsId>aspnet-Gameapp-9DFF1CD9-39C1-4351-903D-F5F5CEAD1E3A</UserSecretsId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\**" />
+    <Compile Remove="Pages\Home\**" />
+    <Content Remove="Data\Migrations\**" />
+    <Content Remove="Pages\Home\**" />
+    <EmbeddedResource Remove="Data\Migrations\**" />
+    <EmbeddedResource Remove="Pages\Home\**" />
+    <None Remove="Data\Migrations\**" />
+    <None Remove="Pages\Home\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\RemoteController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Pages\Shared\Components\InputForm\_EmailTemp.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Areas\Admin\Pages\Plans\Delete.cshtml.cs~RF4820dbe.TMP" />
+    <None Remove="Areas\Shop\Pages\Reports\XtraReport1.vsrepx" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="{d37e2a3e-8545-3a39-9f4f-31827c9124ab}">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>2</VersionMajor>
+      <Guid>d37e2a3e-8545-3a39-9f4f-31827c9124ab</Guid>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\ViewModels\CustomerPic.cs" />
+    <Content Include="Models\ViewModels\ResetPasswordViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Areas\Shop\Pages\Reports\XtraReport1.vsrepx" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="CorePush" Version="3.0.10" />
+    <PackageReference Include="DevExpress.AspNetCore.Reporting" Version="21.2.6" />
+    <PackageReference Include="DevExtreme.AspNet.Core" Version="21.2.6" />
+    <PackageReference Include="DevExtreme.AspNet.Data" Version="2.8.2" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="6.14.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.161" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NToastNotify" Version="7.0.0" />
+    <PackageReference Include="SendGrid" Version="9.25.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+	  <PackageReference Include="MailKit" Version="3.4.1" />
+	  <PackageReference Include="RestSharp" Version="109.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\countries\" />
+    <Folder Include="wwwroot\Images\categories\" />
+    <Folder Include="wwwroot\Images\Curreny\" />
+    <Folder Include="wwwroot\Images\PaymentMethod\" />
+    <Folder Include="wwwroot\Images\Platform\" />
+    <Folder Include="wwwroot\Images\SubCategories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Areas\Admin\Pages\PaymentMethod\Edit.cshtml" />
+    <None Include="Areas\Admin\Pages\PaymentMethod\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\PublicNotifications\Add.cshtml" />
+    <None Include="Areas\Admin\Pages\PublicNotifications\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\PublicNotifications\Send.cshtml" />
+    <None Include="Pages\Shared\Components\InputForm\_EmailTemp.cshtml" />
+    <None Include="Pages\Shared\Components\InputForm\_Invoice.cshtml" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
+    <None Include="wwwroot\lib\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\js\bootstrap.js" />
+    <None Include="wwwroot\lib\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\js\bootstrap.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Areas\Shop\Pages\Reports\XtraReport1.cs">
+      <DependentUpon>XtraReport1.vsrepx</DependentUpon>
+    </Compile>
+    <Compile Update="Areas\Shop\Pages\Reports\XtraReport1.Designer.cs">
+      <DependentUpon>XtraReport1.vsrepx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

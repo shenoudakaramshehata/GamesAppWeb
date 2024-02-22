@@ -1,0 +1,343 @@
+﻿@page
+@model Gameapp.Areas.Admin.Pages.Banners.DetailsModel
+@{
+}
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <h3 style="margin-top:9px; color:#4b49ac">@sharedResource["Banner"]  </h3>
+        <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+
+        @*        <a class="btn btn-info" style="background-color:#4b49ac !important; border:none" href="/Admin/plans/list">@sharedResource["Back"]</a>
+        *@
+    </div>
+    <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+        <div class="row">
+            <div class="col-md-12 col-lg-6 mt-4">
+                <h4>@sharedResource["Informations"] </h4>
+                <hr />
+
+                @{ if (Model.banner.SliderTypeId == 4)
+                    {
+                        <div class="d-flex justify-content-between">
+                            <div> @sharedResource["Arabic Type Title"] </div>
+                            <div> @Model.banner.HomeSliderType.SliderTypeTlar </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <div> @sharedResource["English Type Title"] </div>
+                            <div> @Model.banner.HomeSliderType.SliderTypeTlen </div>
+                        </div>
+
+                    }
+
+                    else if (Model.banner.SliderTypeId == 5)
+                    {
+                        <div class="d-flex justify-content-between">
+                            <div> @sharedResource["Arabic Type Title"] </div>
+                            <div> @Model.banner.HomeSliderType.SliderTypeTlar </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <div> @sharedResource["English Type Title"] </div>
+                            <div> @Model.banner.HomeSliderType.SliderTypeTlen </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div>@sharedResource["Name"]  </div>
+                            <div> @Model.EntityNameEn </div>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="d-flex justify-content-between">
+                            <div> @sharedResource["Arabic Type Title"] </div>
+                            <div> @Model.banner.HomeSliderType.SliderTypeTlar </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <div> @sharedResource["English Type Title"] </div>
+                            <div> @Model.banner.HomeSliderType.SliderTypeTlen </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div>@sharedResource["NameAr"]  </div>
+                            <div> @Model.EntityNameAr </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <div>@sharedResource["NameEn"]  </div>
+                            <div> @Model.EntityNameEn </div>
+                        </div>
+                    }
+                }
+
+                <div class="d-flex justify-content-between">
+                    <div>@sharedResource["Picture"]  </div>
+                    <div class="Details_img">
+                        <img style="border-radius: 13%;" width="250" height="250" class="img-fluid" src="~/Images/@Model.banner.Pic" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <h3 style="margin-top:9px; color:#4b49ac">   @sharedResource["Banner"] @sharedResource["Details"]  </h3>
+            <a class="btn btn-info" style="background-color:#4b49ac !important; border:none" href="/admin/banners/index">@sharedResource["Back"]</a>
+        </div>
+        <div class="form_inside" style="padding-top:20px;padding-left:20px;padding-right:20px">
+
+
+            <form id="form" method="post" enctype="multipart/form-data">
+                @Html.Hidden("ItemId", "")
+                @Html.Hidden("ChampionId", "")
+                @Html.Hidden("ShopId", "")
+                @(Html.DevExtreme().Form<Gameapp.Models.Banner>
+                ()
+
+                .ID("HomeSliderForm")
+                .OnInitialized("onFormInitialized")
+
+
+                .FormData(Model.banner)
+
+                .Items(items => {
+
+
+                items.AddSimpleFor(m => m.SliderTypeId).IsRequired(true).Label(k => k.Text(sharedResource["Type"]))
+                .Editor(e => e
+                .Lookup()
+                .DataSource(ds => ds.WebApi().Controller("Sliderss").LoadAction("SliderTypeLookup").Key("Value"))
+                .ValueExpr("Value")
+                .DisplayExpr("Text")
+                .Disabled(true)
+
+
+                );
+
+                items.AddSimple()
+                .Editor(e => e
+                .Lookup()
+                .DataSource(ds => ds.WebApi().Controller("Sliderss").LoadAction("ChampionLookup").Key("Value"))
+                .DisplayExpr("Text")
+                .ValueExpr("Value")
+                .Value(Model.EntityId)
+                .Disabled(true)
+
+
+                ).Label(k => k.Text(sharedResource["Champion"])).Name("Champion").Visible(false);
+
+
+                items.AddSimple()
+                .Editor(e => e
+                .Lookup()
+                .DataSource(ds => ds.WebApi().Controller("Sliderss").LoadAction("ItemLookup").Key("Value"))
+                .ValueExpr("Value")
+                .DisplayExpr("Text")
+                .Value(Model.EntityId)
+
+                .Disabled(true)
+
+                ).Label(k => k.Text(sharedResource["Item"])).Visible(false).Name("Item");
+                items.AddSimple()
+                .Editor(e => e
+                .Lookup()
+                .DataSource(ds => ds.WebApi().Controller("Sliderss").LoadAction("ShopLookup").Key("Value"))
+                .ValueExpr("Value")
+                .DisplayExpr("Text")
+                .Value(Model.EntityId)
+                .Disabled(true)
+
+                ).Label(k => k.Text(sharedResource["Shop"])).Visible(false).Name("Shop");
+
+
+                 items.AddSimpleFor(s => s.CountryId)
+                .Editor(e => e
+                .Lookup()
+                .DataSource(ds => ds.WebApi().Controller("Shops").LoadAction("CountryLookup").Key("Value"))
+                .DisplayExpr("Text")
+                .ValueExpr("Value")
+                .Disabled(true)
+                ).Label(k => k.Text(sharedResource["Country"])).Visible(true).Name("CountryId").IsRequired(true);
+
+
+                items.AddSimpleFor(m => m.EntityId).Visible(false).Name("URL").Label(k => k.Text(sharedResource["ExternalURL"])).Editor(e => e.TextBox().ReadOnly(true)); ;
+                items.AddSimpleFor(m => m.OrderIndex).Label(k => k.Text(sharedResource["Sort"])).Editor(e => e.TextBox().ReadOnly(true)); ;
+                items.AddSimpleFor(m => m.IsActive).Label(k => k.Text(sharedResource["IsActive"])).Editor(e => e.CheckBox().ReadOnly(true)); ;
+
+
+                items.AddSimple().Label(k => k.Text("Picture")).Template(@<text>
+                        <div>
+                            <img width="250" height="250" src="/Images/@Model.banner.Pic" alt="Slider Picture" />
+                        </div>
+                    </text> );
+
+                })
+                )
+
+            </form>
+        </div>
+    </div>*@
+
+@*<script>
+        var form
+        function onFormInitialized(e) {
+
+            form = e.component;
+            var sliderTypeId =@Model.banner.SliderTypeId;
+
+            if (sliderTypeId === 1) {
+                //item
+                form.itemOption("Item", "visible", true);
+                form.itemOption("Champion", "visible", false);
+                form.itemOption("Shop", "visible", false);
+                form.itemOption("URL", "visible", false);
+                $("#ItemId").val(@Model.EntityId);
+
+            }
+            if (sliderTypeId === 2) {
+                //shop
+
+                form.itemOption("Item", "visible", false);
+                form.itemOption("Shop", "visible", true);
+                form.itemOption("Champion", "visible", false);
+                form.itemOption("URL", "visible", false);
+                $("#ShopId").val(@Model.EntityId);
+
+            }
+
+            if (sliderTypeId === 3) {
+                //Champion
+                form.itemOption("Item", "visible", false);
+                form.itemOption("Shop", "visible", false);
+                form.itemOption("Champion", "visible", true);
+                form.itemOption("URL", "visible", false);
+                $("#ChampionId").val(@Model.EntityId);
+
+            }
+            if (sliderTypeId === 4) {
+                //nothing
+                form.itemOption("Item", "visible", false);
+                form.itemOption("Champion", "visible", false);
+                form.itemOption("Shop", "visible", false);
+                form.itemOption("URL", "visible", false);
+            }
+            if (sliderTypeId === 5) {
+                //URL
+                form.itemOption("Item", "visible", false);
+                form.itemOption("Champion", "visible", false);
+                form.itemOption("Shop", "visible", false);
+                form.itemOption("URL", "visible", true);
+            }
+        }
+    </script>
+    <script>
+        var form
+        function onFormInitialized(e) {
+
+            form = e.component;
+            var sliderTypeId =@Model.banner.SliderTypeId;
+
+            if (sliderTypeId === 1) {
+                //item
+                form.itemOption("Item", "visible", true);
+                form.itemOption("Champion", "visible", false);
+                form.itemOption("Shop", "visible", false);
+                form.itemOption("URL", "visible", false);
+                $("#ItemId").val(@Model.EntityId);
+
+            }
+            if (sliderTypeId === 2) {
+                //shop
+
+                form.itemOption("Item", "visible", false);
+                form.itemOption("Shop", "visible", true);
+                form.itemOption("Champion", "visible", false);
+                form.itemOption("URL", "visible", false);
+                $("#ShopId").val(@Model.EntityId);
+
+            }
+
+            if (sliderTypeId === 3) {
+                //Champion
+                form.itemOption("Item", "visible", false);
+                form.itemOption("Shop", "visible", false);
+                form.itemOption("Champion", "visible", true);
+                form.itemOption("URL", "visible", false);
+                $("#ChampionId").val(@Model.EntityId);
+
+            }
+            if (sliderTypeId === 4) {
+                //nothing
+                form.itemOption("Item", "visible", false);
+                form.itemOption("Champion", "visible", false);
+                form.itemOption("Shop", "visible", false);
+                form.itemOption("URL", "visible", false);
+            }
+            if (sliderTypeId === 5) {
+                //URL
+                form.itemOption("Item", "visible", false);
+                form.itemOption("Champion", "visible", false);
+                form.itemOption("Shop", "visible", false);
+                form.itemOption("URL", "visible", true);
+            }
+        }
+
+        function ChampionValueChanged(data) {
+            $("#ChampionId").val(data.selectedItem.Value);
+        }
+
+        function ItemValueChanged(data) {
+            $("#ItemId").val(data.selectedItem.Value);
+        }
+        function ShopValueChanged(data) {
+            $("#ShopId").val(data.selectedItem.Value);
+        }
+
+        function onValueChanged(e) {
+
+            if (e.value === 1) {
+                //item
+                form.itemOption("Item", "visible", true);
+                form.itemOption("Champion", "visible", false);
+                form.itemOption("Shop", "visible", false);
+                form.itemOption("URL", "visible", false);
+            }
+            if (e.value === 2) {
+                //shop
+
+                form.itemOption("Item", "visible", false);
+                form.itemOption("Shop", "visible", true);
+                form.itemOption("Champion", "visible", false);
+                form.itemOption("URL", "visible", false);
+            }
+
+            if (e.value === 3) {
+                //shop
+                form.itemOption("Item", "visible", false);
+                form.itemOption("Shop", "visible", false);
+                form.itemOption("Champion", "visible", true);
+                form.itemOption("URL", "visible", false);
+            }
+            if (e.value === 4) {
+                //nothing
+                form.itemOption("Item", "visible", false);
+                form.itemOption("Champion", "visible", false);
+                form.itemOption("Shop", "visible", false);
+                form.itemOption("URL", "visible", false);
+            }
+            if (e.value === 5) {
+                //URL
+                form.itemOption("Item", "visible", false);
+                form.itemOption("Champion", "visible", false);
+                form.itemOption("Shop", "visible", false);
+                form.itemOption("URL", "visible", true);
+            }
+
+
+        }
+
+    </script>*@

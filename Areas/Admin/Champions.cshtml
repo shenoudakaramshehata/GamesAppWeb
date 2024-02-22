@@ -1,0 +1,51 @@
+﻿@*@page
+@{
+    ViewData["Title"] = "Champions";
+    Layout = "~/Areas/Admin/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Champions</h2>
+
+@(Html.DevExtreme().DataGrid<Gameapp.Models.Champion>()
+    .DataSource(ds => ds.Mvc()
+        .Controller("Champions")
+        .LoadAction("Get")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("ChampionId")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.ChampionTlAR);
+
+        columns.AddFor(m => m.ChampionTlEn);
+
+        columns.AddFor(m => m.StartDate);
+
+        columns.AddFor(m => m.EndDate);
+
+        columns.AddFor(m => m.JoinStart);
+
+        columns.AddFor(m => m.JoinEnd);
+
+        columns.AddFor(m => m.ChampionPic);
+
+        columns.AddFor(m => m.ChampionContent);
+
+        columns.AddFor(m => m.GameModeId).Lookup(lookup => lookup
+            .DataSource(ds => ds.WebApi().Controller("Champions").LoadAction("GameModesLookup").Key("Value"))
+            .ValueExpr("Value")
+            .DisplayExpr("Text")
+        );
+
+        columns.AddFor(m => m.ChampTypeId);
+    })
+    .Editing(e => e
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)
+*@

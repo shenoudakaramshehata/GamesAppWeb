@@ -1,0 +1,492 @@
+﻿<!DOCTYPE html>
+<html lang="en" id="masterPageId">
+
+@inject Gameapp.Data.GamesContext _context
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Localization
+@{
+    var SiteContact = _context.ContactUs.FirstOrDefault();
+}
+<head>
+    <style>
+       /* *, ::after, ::before {
+    box-sizing: content-box!important;
+}*/
+.menu-toggler::after,::before {
+    box-sizing: content-box!important;
+}
+
+        
+    </style>
+
+    <meta charset="UTF-8" />
+    <title> Games Store </title>
+    <!-- mobile responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="~/opins/images/favicon/gameFav.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <!-- main template stylesheet -->
+    <link rel="stylesheet" href="~/opins/css/style.css">
+    <link rel="stylesheet" href="~/opins/css/responsive.css">
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+    @{
+        
+        var locale = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>();
+        var BrowserCulture = locale.RequestCulture.UICulture.ToString();
+        //English
+        if (BrowserCulture == "en-US")
+        {
+            <style>
+                html {
+                    direction: ltr !important;
+                }
+
+                .invers {
+                    direction: rtl !important;
+                    text-align: right !important;
+                }
+
+                .dropdown-toggle::after {
+                    display: none;
+                }
+
+                .text-left {
+                    text-align: left !important;
+                }
+                .site-header.header-one .header-navigation ul.navigation-box > li{
+                    padding:0px;
+                }
+                .btn {
+                    display: inline-block;
+                    vertical-align: middle;
+                    border-style: solid;
+                    border-width: 1px;
+                    border-color: #ffd6f3;
+                    border-radius: 4px;
+                    background-color: white;
+                    box-shadow: 0px 15px 30px 0px rgb(233 79 202 / 10%);
+                    color: #E94FCA;
+                    font-size: 16px;
+                    font-weight: 500;
+                    padding: 11px 38px;
+                    transition: all .4s ease;
+                }
+               
+
+                    .btn:hover {
+                        background-color: #E94FCA;
+                    }
+                    .custom-file-label {
+                    
+                    padding-right: 6rem;
+                    margin-right: 1rem;
+                }
+                    //  .site-header.header-one .header-navigation.stricky-fixed ul.navigation-box > li
+                    //{
+                    //    padding:0;
+                    //}
+                    //.site-header.header-one .header-navigation ul.navigation-box > li {
+                    // padding: 36px 0;
+                    //}
+                
+            </style>
+
+
+
+
+
+
+
+        }
+        //Arabic
+        else
+        {
+
+            <style>
+                            
+                html {
+                    direction: rtl !important;
+                }
+
+                body {
+                    text-align: right;
+                }
+
+                .invers {
+                    direction: rtl !important;
+                    text-align: right !important;
+                }
+                .site-header.header-one .header-navigation ul.navigation-box > li{
+                    padding:0px;
+                }
+                .header-navigation .container .logo-box {
+                    float: right;
+                    right: 15px;
+                    
+                }
+
+                .header-navigation .main-navigation {
+                   float: left;
+                }
+
+                .dropdown-toggle::after {
+                    display: none;
+                }
+
+                #MessiImage {
+                    padding-right: 26rem;
+                }
+
+                .header-navigation ul.navigation-box > li > a {
+                     padding: 1rem;
+                    
+                }
+
+                .custom-file-label {
+                    
+                    padding-right: 6rem;
+                    margin-right: 1rem;
+                }
+
+                .text-left {
+                    text-align: right !important;
+                }
+
+                .btn {
+                    display: inline-block;
+                    vertical-align: middle;
+                    border-style: solid;
+                    border-width: 1px;
+                    border-color: #ffd6f3;
+                    border-radius: 4px;
+                    background-color: white;
+                    box-shadow: 0px 15px 30px 0px rgb(233 79 202 / 10%);
+                    color: #E94FCA;
+                    font-size: 16px;
+                    font-weight: 500;
+                    padding: 11px 38px;
+                    transition: all .4s ease;
+                }
+
+                    .btn:hover {
+                        background-color: #E94FCA;
+                    }
+                    //.site-header.header-one .header-navigation.stricky-fixed ul.navigation-box > li
+                    //{
+                    //    padding:0;
+                    //}
+                    //.site-header.header-one .header-navigation ul.navigation-box > li {
+                    // padding: 36px 0;
+                    //}
+
+            </style>
+
+
+
+
+        }
+
+    }
+
+   
+</head>
+
+<body id="masterbodyid">
+    <div class="preloader"></div><!-- /.preloader -->
+    <div class="page-wrapper">
+        <header class="site-header header-one">
+            <nav class="navbar navbar-expand-lg navbar-light header-navigation @*stricky*@">
+                <div class="container clearfix">
+
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="logo-box clearfix">
+                        <a class="navbar-brand" href="/" style="width:200px">
+                            <img style="width:100%" src="~/opins/images/logo.png" alt="Games Logo" />
+                        </a>
+                        <button  class="menu-toggler" data-target=".header-one .main-navigation">
+                            <span class="fa fa-bars"></span>
+                        </button>
+                    </div><!-- /.logo-box -->
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+
+
+                    <div class="main-navigation" style="display: none; overflow:hidden">
+                        <ul class="one-page-scroll-menu navigation-box">
+                            <li class=" current scrollToLink">
+                                <a href="#banner">@sharedResource["Home"]</a>
+                                <ul class="sub-menu" style="display:none !important">
+                                    @*<li style="display:none"><a href="index-2.html">Home One</a></li>
+                                    <li style="display:none"><a href="index2.html">Home Two</a></li>
+                                    <li style="display:none">
+                                        <a href="index-2.html">Header Versions<button class="sub-nav-toggler"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button></a>
+                                        <ul style="display:none" class="sub-menu">
+                                            <li><a href="index-2.html">Header One</a></li>
+                                            <li><a href="index2.html">Header Two</a></li>
+                                        </ul><!-- /.sub-menu -->
+                                    </li>*@
+                                </ul><!-- /.sub-menu -->
+                            </li>
+                            <li class="scrollToLink"><a href="#features">@sharedResource["App Screens"]</a></li>
+                            <li class="scrollToLink"><a href="#pricing">@sharedResource["Pricing"]</a></li>
+
+                            <li class="scrollToLink" style="padding-top: 3.8rem;">
+                                <partial name="_NewLanguagePartial" />
+                            </li>
+                            <li class="scrollToLink">
+                                <div style="padding:10px" >
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                    
+                                        <a class="btn btn-outline-secondary" href="/identity/Account/Login" style="margin-bottom:11px;"> @sharedResource["LogIn"] </a>
+
+                                 
+
+                                }
+
+
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+
+
+                                    @if (User.IsInRole("Shop"))
+                                    {
+                                        
+                                            <a class="btn " href="/Shop/Index" style="margin-bottom:11px;"> @sharedResource["Dashboard"] </a>
+
+                                       
+
+                                    }
+
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        
+                                            <a href="/Admin/Index" class="btn " style="margin-bottom:11px;"> @sharedResource["Dashboard"] </a>
+
+                                        
+
+
+                                    }
+                                   
+                                }
+                                 </div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+
+                    @* @if (!User.Identity.IsAuthenticated)
+                        {
+                        <div >
+                        <a class="btn btn-outline-secondary" href="/identity/Account/Login" style="margin-bottom:11px;"> @sharedResource["LogIn"] </a>
+                        </div><!-- /.right-side-box -->
+                        }
+
+
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+
+
+                        @if (User.IsInRole("Shop"))
+                        {
+                        <div >
+                        <a class="btn btn-outline-secondary" href="/Shop/Index" style="margin-bottom:11px;"> @sharedResource["Dashboard"] </a>
+                        </div><!-- /.right-side-box -->
+                        }
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                        <div >
+                        <a href="/Admin/Index" class="btn btn-outline-secondary"> @sharedResource["Dashboard"] </a>
+                        </div><!-- /.right-side-box -->
+                        }
+                        }*@
+
+                </div>
+                <!-- /.container -->
+            </nav>
+        </header>
+        @*<header class="site-header header-one">
+
+            <nav class="navbar navbar-expand-lg navbar-light header-navigation stricky">
+
+            <div class="container clearfix">
+            <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="logo-box clearfix">
+            <a class="navbar-brand" href="/" style="width:200px">
+            <img style="width:100%" src="~/opins/images/logo.png" alt="Games Logo" />
+            </a>
+            <button class="menu-toggler" data-target=".header-one .main-navigation">
+            <span class="fa fa-bars"></span>
+            </button>
+            </div><!-- /.logo-box -->
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+            <div class="main-navigation" style="display: block; overflow:hidden">
+            <ul class="one-page-scroll-menu navigation-box">
+
+            <li class=" current scrollToLink">
+            <a href="#banner">@sharedResource["Home"]<button class="sub-nav-toggler"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button></a>
+            <ul class="sub-menu" style="display:none !important">
+            <li style="display:none"><a href="index-2.html">Home One</a></li>
+            <li style="display:none"><a href="index2.html">Home Two</a></li>
+            @*  <li style="display:none"><a href="index-2.html">Header Versions<button class="sub-nav-toggler"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button></a>
+            <ul style="display:none" class="sub-menu">
+            <li><a href="index-2.html">Header One</a></li>
+            <li><a href="index2.html">Header Two</a></li>
+            </ul><!-- /.sub-menu -->
+            </li>
+            </ul><!-- /.sub-menu -->
+            </li>
+            <li class="scrollToLink"><a href="#features">@sharedResource["App Screens"]</a></li>
+            <li class="scrollToLink"><a href="#pricing">@sharedResource["Pricing"]</a></li>
+            <li class="scrollToLink" style="padding-top: 5.8rem;">
+            <partial name="_NewLanguagePartial" />
+            </li>
+
+            </ul>
+
+            </div>
+            </div>
+            </div>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+
+
+
+            </div>
+
+
+
+
+            @*   <div id="LoginBtn" >
+            @if (!User.Identity.IsAuthenticated)
+            {
+            <div class="right-side-box">
+            <a class="header-btn" href="/identity/Account/Login" style="margin-bottom:11px;"> @sharedResource["LogIn"] </a>
+            </div>
+
+            <!-- /.right-side-box -->
+            }
+
+
+
+            @if (User.Identity.IsAuthenticated)
+            {
+
+
+            @if (User.IsInRole("Shop"))
+            {
+            <div class="right-side-box">
+            <a class="header-btn" href="/Shop/Index" style="margin-bottom:11px;">@sharedResource["Dashboard"]  </a>
+            </div>
+
+            <!-- /.right-side-box -->
+            }
+
+            @if (User.IsInRole("Admin"))
+            {
+            <div class="right-side-box">
+            <a href="/Admin/Index" class="header-btn"> @sharedResource["Dashboard"] </a>
+            </div>
+
+            <!-- /.right-side-box -->
+            }
+            }
+
+            </div>
+        *@
+
+        <!-- /.container -->
+        @RenderBody()
+
+        <footer class="site-footer">
+            <span class="bubble-1"></span>
+            <span class="bubble-2"></span>
+            <span class="bubble-3"></span>
+            <span class="bubble-4"></span>
+            <span class="bubble-5"></span>
+            <span class="bubble-6"></span>
+            <div class="container">
+                <div class="inner-container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div class="footer-widget">
+                                <a href="/"><img src="~/opins/images/logo.png" alt="Awesome Image" /></a>
+                            </div><!-- /.footer-widget -->
+                        </div><!-- /.col-lg-2 -->
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div class="footer-widget">
+                                <div class="widget-title">
+                                    <h3>@sharedResource["Address"]</h3>
+                                </div><!-- /.widget-title -->
+                                <ul class="contact-list">
+                                     <li>
+                                        @SiteContact.Address
+                                    </li>
+                                    <li>@SiteContact.phonenumber1</li>
+                                    <li>@SiteContact.Email</li>
+                                   
+                                </ul><!-- /.contact-list -->
+                            </div><!-- /.footer-widget -->
+                        </div><!-- /.col-lg-3 -->
+                        <div class="col-lg-4 col-md-8 col-sm-8">
+                            <div class="footer-widget">
+                                <div class="widget-title">
+                                    <h3>@sharedResource["Follow"]</h3>
+                                </div><!-- /.widget-title -->
+                                <div class="social-block">
+
+
+                                    <a href="@_context.SoicialMidiaLink.FirstOrDefault(s => s.id == 1).WhatsApplink" class="icon-button whatsapp"><i class="fab fa-whatsapp" style="font-size:20px"></i><span></span></a>
+                                    <a href="@_context.SoicialMidiaLink.FirstOrDefault(s => s.id == 1).TwitterLink" class="icon-button twitter"><i class="fab fa-twitter" style="font-size:20px"></i><span></span></a>
+                                    <a href="@_context.SoicialMidiaLink.FirstOrDefault(s => s.id == 1).Instgramlink" class="icon-button instagram"> <i class="fab fa-instagram" style="font-size:20px"></i><span></span></a>
+
+                                </div><!-- /.social-block -->
+                            </div><!-- /.footer-widget -->
+                        </div><!-- /.col-lg-3 -->
+                        <div class="col-lg-2 col-md-4 col-sm-8">
+                            <div class="footer-widget">
+                                <div class="widget-title">
+                                    <h3>@sharedResource["Pages"]</h3>
+                                </div><!-- /.widget-title -->
+                                
+
+
+                                     <a class=" current scrollToLink" asp-page="Privacy">@sharedResource["Privacy Policy"]</a>
+                               
+                            </div><!-- /.footer-widget -->
+                        </div><!-- /.col-lg-3 -->
+                    </div><!-- /.row -->
+                </div><!-- /.inner-container -->
+            </div><!-- /.container -->
+        </footer><!-- /.site-footer -->
+        <div class="bottom-footer text-center">
+            <div class="container">
+                <p>&copy; @sharedResource["copyright 2022"]</p>
+            </div><!-- /.container -->
+        </div><!-- /.bottom-footer -->
+    </div><!-- /.page-wrapper -->
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i style="height:100%; color:white" class="fas fa-arrow-up"></i></a>
+    <!-- /.scroll-to-top -->
+    <script src="~/opins/js/jquery.js"></script>
+    <script src="~/opins/js/bootstrap.bundle.min.js"></script>
+    <script src="~/opins/js/owl.carousel.min.js"></script>
+    <script src="~/opins/js/jquery.bxslider.min.js"></script>
+    <script src="~/opins/js/waypoints.min.js"></script>
+    <script src="~/opins/js/jquery.easing.min.js"></script>
+    <script src="~/opins/js/wow.js"></script>
+    <script src="~/opins/js/jquery.validate.min.js"></script>
+    <script src="~/opins/js/jquery.counterup.min.js"></script>
+    <script src="~/opins/js/theme.js"></script>
+    <script src="~/lib/font-awesome/js/all.min.js"></script>
+
+</body>
+
+
+</html>

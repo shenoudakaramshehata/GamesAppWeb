@@ -1,0 +1,73 @@
+﻿@page
+@model Gameapp.Areas.Admin.Pages.CustomerDetailsModel
+@{
+}
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <h3 style="margin-top:9px; color:#4b49ac">@sharedResource["Customer"]  </h3>
+        <a asp-page="Customer" class="btn btn-primary"> @sharedResource["Back"]</a>
+
+      
+    </div>
+    <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+        <div class="row">
+            @*<h4> @sharedResource["Details"] </h4>*@
+            <hr />
+
+            <div class="col-md-12 col-lg-12 mt-4">
+
+                 @* <div class="col-md-12 col-lg-12 mt-4">
+                                    <dl class="row">
+                                        <dt class="col-sm-2">@sharedResource["Picture"]  </dt>
+                                        <dd class="col-sm-10">
+                                            <img style="border-radius: 13%;" width="250" height="250" class="img-fluid" src="~/Images/@Model.customer.CustomerImage" />
+                                        </dd>
+                                    </dl>
+                  </div>*@
+                <dl class="row">
+                    <dt class="col-sm-2">@sharedResource["NameAr"]  </dt>
+                    <dd class="col-sm-10"> @Model.customer.CustomernameAr </dd>
+                </dl>
+            </div>
+            <div class="col-md-12 col-lg-12 mt-4">
+                <dl class="row">
+                    <dt class="col-sm-2">@sharedResource["NameEn"]  </dt>
+                    <dd class="col-sm-10"> @Model.customer.CustomernameEn </dd>
+                </dl>
+            </div>
+            <div class="col-md-12 col-lg-12 mt-4">
+
+                <dl class="row">
+                    <dt class="col-sm-2">@sharedResource["Email"]  </dt>
+                    <dd class="col-sm-10"> @Model.customer.CustomerEmail </dd>
+                </dl>
+            </div>
+
+
+            <div class="col-md-12 col-lg-12 mt-4">
+                <dl class="row">
+                    <dt class="col-sm-2">@sharedResource["Phone"]  </dt>
+                    <dd class="col-sm-10">
+                        @Model.customer.Customerphone
+                    </dd>
+                </dl>
+            </div>
+
+
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-6 mt-4">
+                        <h4> @sharedResource["RegisterDate"] </h4>
+                        <hr />
+
+                        <div class="d-flex justify-content-between">
+                            <div> @Model.customer.RegisterDate </div>
+                        </div>
+
+                    </div>
+                     
+        </div>
+    </div>
+</div>

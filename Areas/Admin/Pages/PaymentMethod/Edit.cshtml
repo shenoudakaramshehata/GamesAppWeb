@@ -1,0 +1,61 @@
+﻿@page
+@model Gameapp.Areas.Admin.Pages.PaymentMethod.EditModel
+@{
+}
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Edit"]  @sharedResource["Payment Method"]
+                            <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <br />
+                        <form id="form" method="post" enctype="multipart/form-data">
+                            @(Html.DevExtreme().Form<Gameapp.Models.PaymentMehod>()
+                                 .FormData(Model.paymentMethod)
+        .Items(items =>
+        {
+
+
+        items.AddSimpleFor(m => m.PaymentMethodId).Visible(false);
+
+        items.AddSimpleFor(m => m.PaymentMethodName).IsRequired(true).Label(k => k.Text(sharedResource["Payment Method Name"]));
+        items.AddSimpleFor(m => m.IsActive).Label(k => k.Text(sharedResource["Active"]));
+        items.AddSimple().Label(k => k.Text(sharedResource["Picture"])).Template(@<text>
+                        <div>
+                    <img width="250" height="250" src="/Images/PaymentMethod/@Model.paymentMethod.PaymentMethodPic" alt="Payment Method Picture"/>
+                </div>
+                            </text> );
+
+             items.AddSimpleFor(m => m.PaymentMethodPic).Label(k => k.Text(sharedResource["Change Picture"])).Template(@<text>
+                    @(Html.DevExtreme().FileUploader()
+                .Name("Photo")
+                .SelectButtonText(sharedResource["Select_photo"])
+                .LabelText("")
+                .Accept("image/*")
+                .UploadMode(FileUploadMode.UseForm)
+                 .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+
+                .Height(70)
+                    )
+
+                </text> ).IsRequired(false);
+            items.AddButton()
+                        .ColSpan(3)
+                        .ButtonOptions(b => b.Text(sharedResource["Save"])
+                        .Type(ButtonType.Success)
+                        .UseSubmitBehavior(true)).CssClass("invers");
+        })
+)
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

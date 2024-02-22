@@ -1,0 +1,72 @@
+﻿@page
+@using Gameapp.Models.ViewModels
+@model Gameapp.Areas.Admin.Pages.UserManagementModel
+@{
+    ViewData["active"] = "active";
+
+}
+
+
+<div class="card">
+<div class="card-header">
+    <h3 style="margin-top:9px; color:#4b49ac">@sharedResource["UsersManagement"] </h3>
+</div>
+<div style="padding-top:20px;padding-left:20px;padding-right:20px">
+
+
+
+    @(Html.DevExtreme().DataGrid<UsersManagement>()
+         .DataSource(ds => ds
+    .RemoteController()
+    .Key("Id")
+    .LoadUrl(Url.Page("UserManagement", "Users"))
+    )
+    
+    .HeaderFilter(headerFilter => headerFilter.Visible(true))
+   .Paging(paging => paging.PageSize(10))
+        .Pager(pager =>
+        {
+        pager.Visible(true);
+        pager.DisplayMode(GridPagerDisplayMode.Full);
+        pager.ShowPageSizeSelector(true);
+        pager.AllowedPageSizes(new JS("[5, 10, 'all']"));
+        pager.ShowInfo(true);
+        pager.ShowNavigationButtons(true);
+        })
+        .ShowBorders(true)
+        .FilterRow(filterRow => filterRow
+        .Visible(true)
+        .ApplyFilter(GridApplyFilterMode.Auto)
+        )
+        .SearchPanel(searchPanel => searchPanel
+        .Visible(true)
+        .Width(240)
+         .Placeholder(sharedResource["SearchTxt"])
+        )
+        .HeaderFilter(headerFilter => headerFilter.Visible(true)).ShowColumnLines(true)
+        .ShowRowLines(true)
+        .RowAlternationEnabled(true)
+        .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+
+        
+    .Columns(columns => {
+
+    columns.AddFor(m => m.Email).Caption(sharedResource["Email"]);
+
+    columns.AddFor(m => m.UserName).Caption(sharedResource["Username"]);
+
+    columns.AddFor(m => m.Title).Caption(sharedResource["Title"]);
+
+    columns.AddFor(m => m.Role).Caption(sharedResource["Role"]);
+
+
+    columns.Add().Caption(sharedResource["Actions"]).Alignment(HorizontalAlignment.Center).Width(250).CellTemplate(@<text>
+        <a href="/identity/account/resetpassword?id=<%- data.Id %>">@sharedResource["ResetPassword"]   </a>
+    </text>);
+    })
+    )
+
+
+</div>
+
+</div>

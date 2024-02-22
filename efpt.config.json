@@ -1,0 +1,113 @@
+﻿{
+   "CodeGenerationMode": 0,
+   "ContextClassName": "GamesContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": "Data",
+   "OutputPath": "Models",
+   "ProjectRootNamespace": "Gameapp",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[AddressType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Banner]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[BestOffer]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Category]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ChampionShip]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Country]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Curreny]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Customer]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Items]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[language]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Order]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PaymentMehod]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ProductImage]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ShippingAddress]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Shop]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ShoppingCart]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Slider]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[SliderType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[SubCategory]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[WishList]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "DESKTOP-USU4RV8\\SQLEXPRESS.Games",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}

@@ -1,0 +1,263 @@
+﻿@page
+@model Gameapp.Areas.Admin.Pages.AddChampionShipModel
+@{
+}
+
+@section ExternalDependencies {
+<script src="https://unpkg.com/devextreme-quill@21_2/dist/dx-quill.min.js"></script>
+<script src="https://unpkg.com/turndown@7.0.0/dist/turndown.js"></script>
+<script src="https://unpkg.com/devextreme-showdown/dist/showdown.min.js"></script>
+}
+
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <h3 style="margin-top:9px; color:#4b49ac">  @sharedResource["Add"] @sharedResource["Championship"]  </h3>
+        <a class="btn btn-info" style="background-color:#4b49ac !important; border:none" href="/Admin/ChampionShip">@sharedResource["Back"]</a>
+    </div>
+    <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+
+        <form id="form" method="post" enctype="multipart/form-data">
+            <div class="text-danger" asp-validation-summary="All"></div>
+
+            <div class="row form_inside">
+                <div class="col-sm-12 col-lg-6" style="margin-top: 3px;">
+
+                    <div class="dx-field">
+
+                        <div class="dx-field-label">@sharedResource["TlEn"]:</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().TextBoxFor(s => s.Champion.ChampionTlEn)
+                            
+
+                            )
+                        </div>
+                    </div>
+
+                    <div class="dx-field">
+
+                        <div class="dx-field-label">@sharedResource["TlAr"]:</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().TextBoxFor(s => s.Champion.ChampionTlAR)
+                            )
+                        </div>
+                    </div>
+
+                    <div class="dx-field">
+
+                        <div class="dx-field-label">@sharedResource["StartDate"]:</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().DateBoxFor(s => s.Champion.StartDate)
+                            )
+                        </div>
+                    </div>
+
+                    <div class="dx-field">
+
+                        <div class="dx-field-label">@sharedResource["EndDate"]:</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().DateBoxFor(s => s.Champion.EndDate)
+                            )
+                        </div>
+                    </div>
+
+
+                    <div class="dx-field">
+
+                        <div class="dx-field-label">@sharedResource["JoinStart"]:</div>
+
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().DateBoxFor(s => s.Champion.JoinStart)
+                            )
+                        </div>
+                    </div>
+
+
+                    <div class="dx-field">
+
+                        <div class="dx-field-label">@sharedResource["JoinEnd"]:</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().DateBoxFor(s => s.Champion.JoinEnd)
+                            )
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-sm-12 col-lg-6">
+
+                    <div class="dx-field">
+                        <div class="dx-field-label">@sharedResource["GameMode"]:</div>
+
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().SelectBoxFor(s => s.Champion.GameModeId)
+                            .ValueExpr("Value")
+                            .DisplayExpr("Text")
+                            .DataSource(ds => ds.WebApi().Controller("Champions").LoadAction("GameModesLookup").Key("Value"))
+                            .ShowClearButton(true).Placeholder(sharedResource["Select"])
+                                                        .ShowClearButton(true)
+                            )
+                        </div>
+                    </div>
+
+                    <div class="dx-field">
+                        <div class="dx-field-label">@sharedResource["Type"]:</div>
+
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().SelectBoxFor(s => s.Champion.ChampTypeId)
+                            .ValueExpr("Value")
+                            .DisplayExpr("Text")
+                            .DataSource(ds => ds.WebApi().Controller("Champions").LoadAction("ChampionTypeLookup").Key("Value"))
+                            .ShowClearButton(true).Placeholder(sharedResource["Select"])
+                                                        .ShowClearButton(true)
+                            )
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="dx-field">
+                        <div class="dx-field-label">@sharedResource["Picture"] :</div>
+                        <div class="dx-field-value">
+                            @(Html.DevExtreme().FileUploader()
+                            .Name("Champion.ChampionPic")
+                            .SelectButtonText(sharedResource["Select_photo"])
+                            .LabelText("")
+                            .Accept("image/*")
+                            .UploadMode(FileUploadMode.UseForm)
+
+                            )
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="dx-field" style="margin-top:30px; padding:15px" >
+                    <div style="margin-bottom:5px;">@sharedResource["Content"]:</div>
+                    @(Html.DevExtreme().HtmlEditor()
+                    .Name("Champion.ChampionContent")
+                    .ID("html_editor")
+                    .Height(300)
+                    .OnContentReady("setMarkupValue")
+                   
+                    .Toolbar(toolbar => toolbar.Items(
+                    items => {
+                    items.Add().Name(HtmlEditorToolbarItem.Undo);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Redo);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Separator);
+
+                    items.Add()
+                    .Name("size")
+                    .AcceptedValues(new[] { "8pt", "10pt", "12pt", "14pt", "18pt", "24pt", "36pt" });
+
+                    items.Add()
+                    .Name("font")
+                    .AcceptedValues(new[] { "Arial", "Courier New", "Georgia", "Impact", "Lucida Console", "Tahoma", "Times New Roman", "Verdana" });
+
+                    items.Add().Name(HtmlEditorToolbarItem.Separator);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Bold);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Italic);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Strike);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Underline);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Separator);
+
+                    items.Add().Name(HtmlEditorToolbarItem.AlignLeft);
+
+                    items.Add().Name(HtmlEditorToolbarItem.AlignCenter);
+
+                    items.Add().Name(HtmlEditorToolbarItem.AlignRight);
+
+                    items.Add().Name(HtmlEditorToolbarItem.AlignJustify);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Separator);
+
+                    items.Add().Name(HtmlEditorToolbarItem.OrderedList);
+
+                    items.Add().Name(HtmlEditorToolbarItem.BulletList);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Separator);
+
+                    items.Add()
+                    .Name("header")
+                    .AcceptedValues(new JS("[false, 1, 2, 3, 4, 5]"));
+
+                    items.Add().Name(HtmlEditorToolbarItem.Separator);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Color);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Background);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Separator);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Link);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Image);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Separator);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Clear);
+
+                    items.Add().Name(HtmlEditorToolbarItem.CodeBlock);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Blockquote);
+
+                    items.Add().Name(HtmlEditorToolbarItem.Separator);
+
+                    items.Add().Name(HtmlEditorToolbarItem.InsertTable);
+
+                    items.Add().Name(HtmlEditorToolbarItem.DeleteTable);
+
+                    items.Add().Name(HtmlEditorToolbarItem.InsertRowAbove);
+
+                    items.Add().Name(HtmlEditorToolbarItem.InsertRowBelow);
+
+                    items.Add().Name(HtmlEditorToolbarItem.DeleteRow);
+
+                    items.Add().Name(HtmlEditorToolbarItem.InsertColumnLeft);
+
+                    items.Add().Name(HtmlEditorToolbarItem.InsertColumnRight);
+
+                    items.Add().Name(HtmlEditorToolbarItem.DeleteColumn);
+                    })
+                    )
+                    )
+
+                </div>
+
+
+            </div>
+
+
+            <div class="col-12 button mb-5" style="margin-top:10px">
+
+                @(Html.DevExtreme().Button()
+                .ID("button")
+                .Text(sharedResource["Save"])
+                .Type(ButtonType.Success)
+                .UseSubmitBehavior(true)
+                )
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script>
+                    function setMarkupValue(e) {
+            console.log("ready");
+        console.log(e.component.option("value"));
+         markup = e.component.option("value");
+        console.log("marekup", markup);
+    }
+</script>

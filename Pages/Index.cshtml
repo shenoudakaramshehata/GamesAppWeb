@@ -1,0 +1,318 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@inject Gameapp.Data.GamesContext _context
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+
+<section class="banner-style-one" id="banner">
+    <span class="bubble-1"></span>
+    <span class="bubble-2"></span>
+    <span class="bubble-3"></span>
+    <span class="bubble-4"></span>
+    <span class="bubble-5"></span>
+    <span class="bubble-6"></span>
+    <img src="~/opins/images/banner-moc-1-1.png" id="MessiImage" class="banner-mock" alt="Awesome Image" />
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-xl-6 col-lg-8">
+                <div class="content-block">
+                    <h3>
+                        @sharedResource["Everything You"]
+                        
+                        <br> @sharedResource["Want to Play"]
+                    </h3>
+                    <p>@sharedResource["Choose from the largest library of  video games portal"] </p>
+                    <div class="button-block">
+                        <a href="#" class="banner-btn">
+                            <i class="fa fa-play"></i>
+                            @sharedResource["Get in"]<span>@sharedResource["Google Play"]</span>
+                        </a>
+                        <a href="#" class="banner-btn">
+                            <i class="fa fa-apple"></i>
+                            @sharedResource["Get in"]<span>@sharedResource["Play Store"]</span>
+                        </a>
+                    </div><!-- /.button-block -->
+                </div><!-- /.content-block -->
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.banner-style-one -->
+@*<section class="fun-fact-style-one">
+    <div class="container">
+    <h3 class="title-line">Numbers Speaks Everything</h3><!-- /.title-line -->
+    <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-12">
+    <div class="single-funfact-one text-center">
+    <h3 class="counter">4789</h3>
+    <p>Downloads</p>
+    </div><!-- /.single-funfact-one -->
+    </div><!-- /.col-lg-3 -->
+    <div class="col-lg-3 col-md-6 col-sm-12">
+    <div class="single-funfact-one text-center">
+    <h3 class="counter">6400</h3>
+    <p>Likes</p>
+    </div><!-- /.single-funfact-one -->
+    </div><!-- /.col-lg-3 -->
+    <div class="col-lg-3 col-md-6 col-sm-12">
+    <div class="single-funfact-one text-center">
+    <h3 class="counter">900</h3>
+    <p>5 Star Rating</p>
+    </div><!-- /.single-funfact-one -->
+    </div><!-- /.col-lg-3 -->
+    <div class="col-lg-3 col-md-6 col-sm-12">
+    <div class="single-funfact-one text-center">
+    <h3 class="counter">266</h3>
+    <p>Awards</p>
+    </div><!-- /.single-funfact-one -->
+    </div><!-- /.col-lg-3 -->
+    </div><!-- /.row -->
+    </div><!-- /.container -->
+    </section><!-- /.fun-fact-style-one -->*@
+@*<section class="services-style-one" id="service">
+    <div class="container">
+    <div class="block-title text-center">
+    <img src="~/opins/images/round-circle-1-1.png" alt="Awesome Image" class="wow rotateIn" data-wow-duration="1000ms" />
+    <h2>Effective tools for <br> busy administrators.</h2>
+    </div><!-- /.block-title -->
+    <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="single-service-one">
+    <div class="hover-block"></div><!-- /.hover-block -->
+    <i class="opins-icon-smartphone"></i>
+    <h3>High Creative App <br> Display</h3>
+    <p>There are many variations of passages of lorem ipsum but majority have suffered.</p>
+    <div class="line-block"></div><!-- /.line-block -->
+    <a href="#" class="more-link">Read More</a>
+    </div><!-- /.single-service-one -->
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="single-service-one">
+    <div class="hover-block"></div><!-- /.hover-block -->
+    <i class="opins-icon-smartphone-1"></i>
+    <h3>Unique and Custom <br> Options</h3>
+    <p>There are many variations of passages of lorem ipsum but majority have suffered.</p>
+    <div class="line-block"></div><!-- /.line-block -->
+    <a href="#" class="more-link">Read More</a>
+    </div><!-- /.single-service-one -->
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="single-service-one">
+    <div class="hover-block"></div><!-- /.hover-block -->
+    <i class="opins-icon-smartphone-2"></i>
+    <h3>Secure and Perfect <br> Integration</h3>
+    <p>There are many variations of passages of lorem ipsum but majority have suffered.</p>
+    <div class="line-block"></div><!-- /.line-block -->
+    <a href="#" class="more-link">Read More</a>
+    </div><!-- /.single-service-one -->
+    </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+    </div><!-- /.container -->
+    </section><!-- /.services-style-one -->*@
+<section class="feature-style-two" id="features">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="image-block">
+                    <img src="~/opins/images/moc-1-1.png" alt="Awesome Image" />
+                </div><!-- /.image-block -->
+            </div><!-- /.col-lg-6 -->
+            <div class="col-lg-6">
+                <div class="content-block">
+                    <div class="block-title ">
+                        <img src="~/opins/images/round-circle-1-2.png" alt="Awesome Image" class="wow rotateIn" data-wow-duration="1000ms" />
+                        <h2>@sharedResource["Take a control on your"] <br>@sharedResource["online shop."] </h2>
+                    </div><!-- /.block-title -->
+                    <p>@sharedResource["A comprehensive control panel that enables you to"] <br>@sharedResource["manage your orders with ease"] </p>
+                    <ul class="feature-lists">
+                        <li><i class="fa fa-check"></i> @sharedResource["Add Items ."] </li>
+                        <li><i class="fa fa-check"></i> @sharedResource["Follow Your Orders ."] </li>
+                        <li><i class="fa fa-check"></i> @sharedResource["And More."] </li>
+                    </ul><!-- /.feature-lists -->
+                    <a href="#pricing" class="feature-btn">@sharedResource["Learn More"]</a>
+                </div><!-- /.content-block -->
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.feature-style-two -->
+
+<section class="pricing-style-one" id="pricing">
+    <div class="container">
+        <div class="block-title text-center">
+            <img src="~/opins/images/round-circle-1-4.png" alt="Awesome Image" class="wow rotateIn" data-wow-duration="1000ms" />
+            <h2>@sharedResource["Choose plans which suits"] <br> @sharedResource["your needs."]</h2>
+        </div><!-- /.block-title -->
+        <ul class="nav nav-tabs tab-title" role="tablist">
+
+            @foreach (var item in _context.Country.ToList())
+            {
+                @if (item.CountryTlen.Contains("uwait"))
+                {
+                    <li data="@item.CountryId" onclick="changePlansBasedOnCountry(event)" class="nav-item" >
+                        <a data="@item.CountryId" onclick="changePlansBasedOnCountry(event)" class="nav-link active" style="height:60px; margin:3px" href="#monthly" role="tab" data-toggle="tab">
+                            <img data="@item.CountryId" onclick="changePlansBasedOnCountry(event)"  src="~/Images/countries/@item.Pic" style="width:50px" />
+                        </a>
+                    </li>
+
+                }
+                else
+                {
+                    <li data="@item.CountryId" onclick="changePlansBasedOnCountry(event)" class="nav-item " >
+                        <a data="@item.CountryId" onclick="changePlansBasedOnCountry(event)" class="nav-link " style="height:60px; margin:3px" href="#monthly" role="tab" data-toggle="tab">
+                            <img data="@item.CountryId" onclick="changePlansBasedOnCountry(event)" data="@item.CountryId" onclick="changePlansBasedOnCountry(event)"   src="~/Images/countries/@item.Pic" style="width:50px" />
+                        </a>
+                    </li>
+                }
+
+            }
+
+
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane show active  animated fadeInUp" id="monthly">
+                <div class="row prices_row justify-content-around">
+
+                </div><!-- /.row -->
+            </div><!-- /.tab-pane -->
+        </div><!-- /.tab-content -->
+    </div><!-- /.container -->
+</section><!-- /.pricing-style-one -->
+
+
+
+<section class="subscribe-style-one">
+    <div class="container ">
+        <h3 class="text-center">@sharedResource["Subscribe Our Newsletter"] </h3>
+        <form class="subscribe-form contact-form-vaidated">
+
+            <input id="email" type="text" name="email" placeholder="@sharedResource["Enter your email"]">
+            <button id="Subscribe" type="submit">@sharedResource["Subscribe"]</button>
+        </form>
+        <div style="color:green" id="message" class="message d-none mt-1 subscribe-form "> @sharedResource["Subscribed Successfully"] </div>
+        <div style="color:#e94fca" id="loading" class="loading d-none subscribe-form">@sharedResource["...loading"]  </div>
+        <div class="result"></div><!-- /.result -->
+    </div><!-- /.container -->
+</section><!-- /.subscribe-style-one -->
+<script>
+
+     var allPlans = null;
+
+      window.addEventListener("load", () => {
+          fetch("@Model.url" + "/api/Plans/GetPlansForIndexPage" )
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        allPlans = data;
+        console.log("all plans", allPlans);
+
+        for (const property in allPlans.data) {
+  console.log(allPlans.data[property]);
+
+
+  if(allPlans.data[property].CountryTlen.includes("uwai")){
+      document.getElementsByClassName("prices_row")[0].innerHTML += `
+                 <div style="width:250px">
+                        <div class="single-pricing-one basic-pack">
+                            <div class="top-block">
+                                <span class="price">${allPlans.data[property].Price}$</span>
+                                <span class="pack-name">${allPlans.data[property].Period} Mo </span>
+
+                                <span class="pack-name">${allPlans.data[property].EnglishTitle}</span>
+                                <div class="line"></div><!-- /.line -->
+                            </div><!-- /.top-block -->
+                            <ul class="feature-lists">
+                                <li>${allPlans.data[property].NoOfItems} @sharedResource["Items"] </li>
+                                 <li>${allPlans.data[property].Reports == true ? " <i class='fas fa-check'></i> @sharedResource["Reports"]" : " <i class='fas fa-times'></i> Reports" }</li>
+                                 <li>${allPlans.data[property].Dashboard == true ? " <i class='fas fa-check'></i>@sharedResource["Dashboard"] " : " <i class='fas fa-times'></i> Dashboard" }</li>
+                                 <li>${allPlans.data[property].AdzBanners == true ? " <i class='fas fa-check'></i> @sharedResource["AdzBanners"]" : " <i class='fas fa-times'></i> AdzBanners" }</li>
+                                 <li>${allPlans.data[property].VipCollection == true ? " <i class='fas fa-check'></i>@sharedResource["VipCollection"] " : " <i class='fas fa-times'></i> VipCollection" }</li>
+
+
+                            </ul><!-- /.feature-lists -->
+                            <div class="bottom-block">
+                                <a style="width:145px; margin-bottom:7px" href="/identity/account/register?id=${allPlans.data[property].Id}" class="price-btn">@sharedResource["SignUp"]</a>
+                                <a style="width:145px;" href="/identity/account/login?id=${allPlans.data[property].Id}" class="price-btn">@sharedResource["SignIn"]</a>
+                            </div><!-- /.bottom-block -->
+                        </div><!-- /.single-pricing-one -->
+                    </div><!-- /.col-lg-4 -->
+
+      `;
+  }
+}
+
+    });
+      })
+
+
+    function changePlansBasedOnCountry(event) {
+        debugger
+          console.log("we are in ")
+          console.log(event.target.id)
+          console.log(event.target.getAttribute("data"))
+          document.getElementsByClassName("prices_row")[0].innerHTML = "";
+
+        for (const property in allPlans.data) {
+
+
+
+  if(allPlans.data[property].CountryId == event.target.getAttribute("data")){
+      document.getElementsByClassName("prices_row")[0].innerHTML += `
+                     <div style="width:250px">
+                        <div class="single-pricing-one basic-pack">
+                            <div class="top-block">
+                                <span class="price">${allPlans.data[property].Price}$</span>
+                                <span class="pack-name">${allPlans.data[property].Period} Mo </span>
+
+                                <span class="pack-name">${allPlans.data[property].EnglishTitle}</span>
+                                <div class="line"></div><!-- /.line -->
+                            </div><!-- /.top-block -->
+                            <ul class="feature-lists">
+                                <li>${allPlans.data[property].NoOfItems} Items </li>
+                                 <li>${allPlans.data[property].Reports == true ? " <i class='fas fa-check'></i> Reports" : " <i class='fas fa-times'></i> Reports" }</li>
+                                 <li>${allPlans.data[property].Dashboard == true ? " <i class='fas fa-check'></i> Dashboard" : " <i class='fas fa-times'></i> Dashboard" }</li>
+                                 <li>${allPlans.data[property].AdzBanners == true ? " <i class='fas fa-check'></i> AdzBanners" : " <i class='fas fa-times'></i> AdzBanners" }</li>
+                                 <li>${allPlans.data[property].VipCollection == true ? " <i class='fas fa-check'></i> VipCollection" : " <i class='fas fa-times'></i> VipCollection" }</li>
+                                 <li>${allPlans.data[property].VipCollection == true ? " <i class='fas fa-check'></i> VipCollection" : " <i class='fas fa-times'></i> VipCollection" }</li>
+
+
+                            </ul><!-- /.feature-lists -->
+                            <div class="bottom-block">
+                                <a style="width:145px; margin-bottom:7px" href="/identity/account/register?id=${allPlans.data[property].Id}" class="price-btn">SignUp</a>
+                                <a style="width:145px;" href="/identity/account/login?id=${allPlans.data[property].Id}" class="price-btn">SignIn</a>
+                            </div><!-- /.bottom-block -->
+                        </div><!-- /.single-pricing-one -->
+                    </div><!-- /.col-lg-4 -->
+
+      `;
+  }
+}
+      }
+
+      document.getElementById("Subscribe").addEventListener("click", () => {
+
+      console.log("sub");
+
+      if(document.getElementById("email").value.length > 2){
+      document.getElementById("loading").classList.remove("d-none")
+
+      fetch("@Model.url" + `/api/mobile/AddSubscriber?email=${document.getElementById("email").value}`, {
+      method: 'POST', // or 'PUT'
+      headers: {
+      'Content-Type': 'application/json',
+      },
+      })
+      .then(() => {
+      document.getElementById("loading").classList.add("d-none")
+
+      document.getElementById("message").classList.remove("d-none");
+      })
+
+      }
+
+      })
+
+
+</script>
